@@ -129,7 +129,7 @@ bool doesEntityStopBoulder(Entity* entity)
 	{
 		return true;
 	}
-	else if ( entity->behavior == &actFountain )
+	else if ( entity->behavior == &actFountain || entity->behavior == &actBloodFountain )
 	{
 		return true;
 	}
@@ -260,7 +260,7 @@ int boulderCheckAgainstEntity(Entity* my, Entity* entity, bool ignoreInsideEntit
 				{
 					bool shapeshifted = (entity->behavior == &actPlayer && entity->effectShapeshift != NOTHING);
 
-					if ( !shapeshifted 
+					if ( !shapeshifted
 						&& (stats->helmet->type == HELM_MINING || stats->helmet->type == HAT_TOPHAT) )
 					{
 						if ( stats->helmet->type == HAT_TOPHAT )
@@ -400,7 +400,7 @@ int boulderCheckAgainstEntity(Entity* my, Entity* entity, bool ignoreInsideEntit
 
 				if ( !lifeSaving )
 				{
-					if ( stats->HP <= 0 && entity->behavior == &actPlayer 
+					if ( stats->HP <= 0 && entity->behavior == &actPlayer
 						&& ((stats->playerRace == RACE_SKELETON && stats->stat_appearance == 0) || stats->type == SKELETON) )
 					{
 						if ( stats->MP >= 75 )
@@ -675,7 +675,7 @@ void actBoulder(Entity* my)
 	Uint32 index = y * MAPLAYERS + x * MAPLAYERS * map.height;
 	if ( !map.tiles[index] || swimmingtiles[map.tiles[index]] || lavatiles[map.tiles[index]] )
 	{
-		if ( (swimmingtiles[map.tiles[index]] || lavatiles[map.tiles[index]]) 
+		if ( (swimmingtiles[map.tiles[index]] || lavatiles[map.tiles[index]])
 			&& (my->sprite == BOULDER_LAVA_SPRITE || my->sprite == BOULDER_ARCANE_SPRITE) )
 		{
 			// lava/arcane balls, roll over lava.
@@ -904,7 +904,7 @@ void actBoulder(Entity* my)
 			BOULDER_STOPPED = 1;
 			TileEntityList.updateEntity(*my);
 			bool foundPathToExit = boulderCheckIfBlockedExit(my);
-			
+
 			if ( !foundPathToExit )
 			{
 				hit.entity = my; // for magicDig
@@ -1067,15 +1067,15 @@ void actBoulder(Entity* my)
 					if (inrange[i])
 					{
                         bool hasRingOfStr = false;
-						if ( players[i] && players[i]->entity ) 
+						if ( players[i] && players[i]->entity )
 						{
-                            if ( stats[i]->ring 
-								&& stats[i]->ring->type == ItemType::RING_STRENGTH) 
+                            if ( stats[i]->ring
+								&& stats[i]->ring->type == ItemType::RING_STRENGTH)
 							{
                                 hasRingOfStr = true;
                             }
-							else if ( stats[i]->gloves 
-								&& stats[i]->gloves->type == ItemType::GAUNTLETS_STRENGTH ) 
+							else if ( stats[i]->gloves
+								&& stats[i]->gloves->type == ItemType::GAUNTLETS_STRENGTH )
 							{
 								hasRingOfStr = true;
 							}

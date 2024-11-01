@@ -71,7 +71,7 @@ class Entity
 	static const Sint32 MAX_CHANCE_STOP_FIRE	= 10;	// Maximum chance an Entity has to stop being on fire is 1 in 10
 
 	// Maximum level of CON needed to get MIN_CHANCE_STOP_FIRE. Every 5 points = 1 increase in chance up to MIN_CHANCE_STOP_FIRE
-	static const Sint32 MAX_CON_FOR_STOP_FIRE = 5 * MIN_CHANCE_STOP_FIRE;	
+	static const Sint32 MAX_CON_FOR_STOP_FIRE = 5 * MIN_CHANCE_STOP_FIRE;
 	// Maximum level of CON needed to get MIN_TICKS_ON_FIRE. Every 2 points = 1 second decrease in time up to MIN_TICKS_ON_FIRE
 	static const Sint32 MAX_CON_FOR_FIRE_TIME = (2 * (MAX_TICKS_ON_FIRE - MIN_TICKS_ON_FIRE)) / TICKS_TO_PROCESS_FIRE;
 	//### End   - Private Entity Constants for BURNING Status Effect
@@ -91,7 +91,7 @@ class Entity
 public:
 	Entity(Sint32 in_sprite, Uint32 pos, list_t* entlist, list_t* creaturelist);
 	~Entity();
-    
+
     bool ditheringDisabled = false;
     struct Dither {
         int value = 0;
@@ -310,8 +310,8 @@ public:
 	Sint32& crystalSpellToActivate; // skill[10] If 1, must be hit by unlocking spell to start generating electricity.
 
 	real_t& crystalStartZ; // fskill[0] mid point of animation, starting height.
-	real_t& crystalMaxZVelocity; // fskill[1] 
-	real_t& crystalMinZVelocity; // fskill[2] 
+	real_t& crystalMaxZVelocity; // fskill[1]
+	real_t& crystalMinZVelocity; // fskill[2]
 	real_t& crystalTurnVelocity; // fskill[3] how fast to turn on click.
 
 	//--PUBLIC GATE SKILLS--
@@ -334,7 +334,7 @@ public:
 	Sint32& boulderTrapFired; //skill[0]
 	Sint32& boulderTrapRefireCounter; //skill[4]
 	Sint32& boulderTrapPreDelay; //skill[5]
-	Sint32& boulderTrapRocksToSpawn; //skill[7] bitwise storage. 
+	Sint32& boulderTrapRocksToSpawn; //skill[7] bitwise storage.
 
 	//--PUBLIC AMBIENT PARTICLE EFFECT SKILLS--
 	Sint32& particleDuration; //skill[0]
@@ -473,7 +473,7 @@ public:
 	Sint32& shrineDestXOffset; //skill[9]
 	Sint32& shrineDestYOffset; //skill[10]
 	Sint32& shrineDaedalusState; // skill[11]
-	
+
 	//--PUBLIC FURNITURE SKILLS--
 	Sint32& furnitureType; //skill[0]
 	Sint32& furnitureInit; //skill[1]
@@ -550,7 +550,7 @@ public:
 	Sint32& actmagicFromSpellbook; // skill[26]
 	Sint32& actmagicSpray; // skill[27]
 	Sint32& actmagicEmitter; // skill[29]
-	
+
 	//--PUBLIC GOLD SKILLS--
 	Sint32& goldAmount; //skill[0]
 	Sint32& goldAmbience; //skill[1]
@@ -692,7 +692,7 @@ public:
 	bool isBlind();
 	bool isWaterWalking() const;
 	bool isLavaWalking() const;
-	
+
 	bool isInvisible() const;
 
 	bool isMobile();
@@ -1048,7 +1048,7 @@ public:
 	// special magic functions/trickery
 	void castFallingMagicMissile(int spellID, real_t distFromCaster, real_t angleFromCasterDirection, int heightDelay);
 	Entity* castOrbitingMagicMissile(int spellID, real_t distFromCaster, real_t angleFromCasterDirection, int duration);
-	Entity* castStationaryOrbitingMagicMissile(Entity* parent, int spellID, real_t centerx, real_t centery, 
+	Entity* castStationaryOrbitingMagicMissile(Entity* parent, int spellID, real_t centerx, real_t centery,
 		real_t distFromCenter, real_t angleFromCenterDirection, int duration);
 	void lichFireSetNextAttack(Stat& myStats);
 	void lichIceSetNextAttack(Stat& myStats);
@@ -1172,6 +1172,9 @@ void playerAnimateSpider(Entity* my);
 //TODO: Allow for cursed fountains. Any fountain that has a negative effect has, say, skill[4] set to 1 to indicate cursed. Used for monster behavior and for effects of things like healing potions.
 void actFountain(Entity* my);
 void actSink(Entity* my);
+
+// WICKED_RENDITION
+void actBloodFountain(Entity* my);
 
 //--- Mechanism functions ---
 void actCircuit(Entity* my);
