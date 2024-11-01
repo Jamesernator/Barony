@@ -58,7 +58,11 @@ enum ArrowSpriteTypes : int
 	PROJECTILE_FIRE_SPRITE,
 	PROJECTILE_HEAVY_SPRITE,
 	PROJECTILE_CRYSTAL_SPRITE,
-	PROJECTILE_HUNTING_SPRITE
+	PROJECTILE_HUNTING_SPRITE,
+
+	// --- WICKED_RENDITION ---
+	// @JAMESERNATOR_TODO: Find which number this is
+	PROJECTILE_LIGHTNING_BOLT,
 };
 
 void actArrow(Entity* my)
@@ -324,7 +328,7 @@ void actArrow(Entity* my)
 					arrowInGround = true;
 				}
 			}
-			else 
+			else
 			{
 				if ( my->pitch >= PI / 12 ) // heavily pitched
 				{
@@ -594,7 +598,7 @@ void actArrow(Entity* my)
 					if ( parent && parent->getStats() )
 					{
 						Stat* parentStats = parent->getStats();
-						if ( parentStats->helmet && parentStats->helmet->type == HAT_HOOD_WHISPERS 
+						if ( parentStats->helmet && parentStats->helmet->type == HAT_HOOD_WHISPERS
 							&& !monsterIsImmobileTurret(hit.entity, hitstats) && !(hitstats->type == MIMIC) )
 						{
 							real_t hitAngle = hit.entity->yawDifferenceFromEntity(my);
@@ -862,7 +866,7 @@ void actArrow(Entity* my)
 						int chance = 10;
 						if ( doSkillIncrease && (local_rng.rand() % chance == 0) && parent && parent->getStats() )
 						{
-							if ( hitstats->type != DUMMYBOT 
+							if ( hitstats->type != DUMMYBOT
 								|| (hitstats->type == DUMMYBOT && parent->getStats()->getProficiency(PRO_RANGED) < SKILL_LEVEL_BASIC) )
 							{
 								parent->increaseSkill(PRO_RANGED);
@@ -1002,7 +1006,7 @@ void actArrow(Entity* my)
 									// rock.
 									messagePlayerColor(hit.entity->skill[2], MESSAGE_COMBAT_BASIC, color, Language::get(2512));
 								}
-								else if (my->sprite == PROJECTILE_BOLT_SPRITE )
+								else if (my->sprite == PROJECTILE_BOLT_SPRITE || my->sprite == PROJECTILE_LIGHTNING_BOLT)
 								{
 									// bolt.
 									messagePlayerColor(hit.entity->skill[2], MESSAGE_COMBAT_BASIC, color, Language::get(2511));
@@ -1489,7 +1493,7 @@ void actArrow(Entity* my)
 					}
 					if ( !strcmp(hitstats->name, "") )
 					{
-						updateEnemyBar(parent, hit.entity, getMonsterLocalizedName(hitstats->type).c_str(), hitstats->HP, hitstats->MAXHP, 
+						updateEnemyBar(parent, hit.entity, getMonsterLocalizedName(hitstats->type).c_str(), hitstats->HP, hitstats->MAXHP,
 							false, dmgGib);
 					}
 					else
