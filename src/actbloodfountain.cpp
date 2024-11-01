@@ -81,6 +81,8 @@ std::pair<int, int> bloodFountainGeneratePotionDrop()
 	return std::make_pair(keyPair.first, keyPair.second);
 }
 
+// @JAMESERNATOR_TODO: This file could really be combined with actfountain and some specialization
+
 /*-------------------------------------------------------------------------------
 
 	act*
